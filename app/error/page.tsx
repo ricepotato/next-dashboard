@@ -1,5 +1,7 @@
 import logger from "../lib/logger";
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   const e = new Error("Test Error Page");
   try {

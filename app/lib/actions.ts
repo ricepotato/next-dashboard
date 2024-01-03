@@ -39,7 +39,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
   });
 
   if (!validatedFields.success) {
-    log.warning(validatedFields.error.flatten().fieldErrors);
+    const msg = JSON.stringify(validatedFields.error.flatten().fieldErrors);
+    log.warning(msg);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Invoice.",
@@ -80,7 +81,8 @@ export async function updateInvoice(
   });
 
   if (!validatedFields.success) {
-    log.warning(validatedFields.error.flatten().fieldErrors);
+    const msg = JSON.stringify(validatedFields.error.flatten().fieldErrors);
+    log.warning(msg);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Invoice.",
