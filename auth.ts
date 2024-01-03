@@ -5,13 +5,14 @@ import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import type { User } from "@/app/lib/definitions";
 import bcrypt from "bcrypt";
+import log from "./app/lib/logger";
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User>`SELECT * from USERS where email=${email}`;
     return user.rows[0];
   } catch (error) {
-    console.warn("failed to fetch user: ", error);
+    log.warning(`[auth] failed to fetch user: ${email}`);
     throw new Error("failed to fetch user");
   }
 }
@@ -34,7 +35,7 @@ export const { auth, signIn, signOut } = NextAuth({
           if (passwordMatch) return user;
         }
 
-        console.log("Invalid credentials");
+        log.debug("[auth] Invalid credentials");
         return null;
       },
     }),

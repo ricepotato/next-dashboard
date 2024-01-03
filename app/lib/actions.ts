@@ -5,6 +5,7 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
+import log from "./logger";
 
 const InvoiceSchema = z.object({
   id: z.string(),
@@ -38,7 +39,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
   });
 
   if (!validatedFields.success) {
-    console.warn(validatedFields.error.flatten().fieldErrors);
+    log.warning(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Invoice.",
@@ -79,7 +80,7 @@ export async function updateInvoice(
   });
 
   if (!validatedFields.success) {
-    console.warn(validatedFields.error.flatten().fieldErrors);
+    log.warning(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Invoice.",
