@@ -8,6 +8,7 @@
     "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
+    "@aws-sdk/client-ssm": "^3.490.0",
     "@elastic/ecs-pino-format": "^1.5.0",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.6",
