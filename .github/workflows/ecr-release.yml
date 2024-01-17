@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR
+name: Release to Amazon ECR
 
 on:
   push:
@@ -14,8 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-    name: Deploy
+  release:
+    name: Release
     runs-on: ubuntu-latest
     environment: production
 
