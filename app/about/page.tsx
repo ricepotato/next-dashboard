@@ -21,8 +21,8 @@ async function IPComponent() {
   const data = await res.json();
   return (
     <section className="border-2 border-brown-500 p-4 rounded shadow-lg mt-2">
-      <p className="text-xl text-brown-500">Your IP : {data.ip}</p>
-      <p className="text-xl text-brown-500">Your country : {data.country}</p>
+      <p className="text-xl text-brown-500">Server IP : {data.ip}</p>
+      <p className="text-xl text-brown-500">Server country : {data.country}</p>
     </section>
   );
 }

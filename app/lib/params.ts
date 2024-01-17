@@ -23,14 +23,14 @@ Available Paramsters name
     apiVersion,
     region,
   });
-  console.debug(`[params] getParam. name=${name}`);
+  console.info(`[params] getParam. name=${name}`);
   try {
     const param = await ssmClient.getParameter({
       Name: name,
     });
     return param.Parameter;
   } catch (e) {
-    console.warn(`[params] GetParamter Error. ${e} name=${name}`);
+    console.info(`[params] GetParamter Error. ${e} name=${name}`);
     return undefined;
   }
 }
@@ -50,7 +50,7 @@ export async function getParamsByPath(path: string) {
     region,
   });
 
-  console.debug(`[params] getParamsByPath. path=${path}`);
+  console.info(`[params] getParamsByPath. path=${path}`);
   try {
     const params = await ssmClient.getParametersByPath({
       Path: path,
@@ -58,7 +58,7 @@ export async function getParamsByPath(path: string) {
     });
     return params.Parameters;
   } catch (e) {
-    console.warn(`[params] getParamsByPath Error. ${e} path=${path}`);
+    console.info(`[params] getParamsByPath Error. ${e} path=${path}`);
     return undefined;
   }
 }
