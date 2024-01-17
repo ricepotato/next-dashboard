@@ -1,7 +1,18 @@
-import { Suspense } from "react";
 import { getParam } from "@/app/lib/params";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
+
+async function getMyIp() {
+  try {
+    const apiUrl = "https://api.myip.com";
+    const res = await fetch(apiUrl);
+    return await res.json();
+  } catch (e: any) {
+    console.error(`[about] getMyIp error : ${e} ${e?.stack} ${e?.cause}`);
+    return undefined;
+  }
+}
 
 export default async function Page() {
   return (
@@ -18,13 +29,19 @@ export default async function Page() {
 }
 
 async function IPComponent() {
-  const apiUrl = "https://api.myip.com";
-  const res = await fetch(apiUrl);
-  const data = await res.json();
+  const data = await getMyIp();
   return (
     <section className="border-2 border-brown-500 p-4 rounded shadow-lg mt-2">
-      <p className="text-xl text-brown-500">Server IP : {data.ip}</p>
-      <p className="text-xl text-brown-500">Server country : {data.country}</p>
+      {data ? (
+        <>
+          <p className="text-xl text-brown-500">Server IP : {data?.ip}</p>
+          <p className="text-xl text-brown-500">
+            Server country : {data?.country}
+          </p>
+        </>
+      ) : (
+        <p className="text-xl text-brown-500">Somethings Wrong!</p>
+      )}
     </section>
   );
 }
