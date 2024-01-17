@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { getParam } from "@/app/lib/params";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   return (
     <main className="flex flex-col min-h-screen p-6 bg-yellow-200 text-center">
